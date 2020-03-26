@@ -2,6 +2,7 @@
 # K-means: an unsupervised learning algorithm used to identify and solve clustering issues.
 # A centroid is a data point that is the arithmetic mean position of all the points on a cluster
 
+
 # %%
 import pandas as pd 
 from sklearn.cluster import KMeans
@@ -38,14 +39,19 @@ iris_df.head()
 # data Visualization of results
 
 # %%
-# hvplot to 2D scatter 
-import hvplot.pandas
+# use hvplot to plot 2D scatter, use bokeh to viz (for web browsers)
+import holoviews as hv
+hv.extension('bokeh')
 iris_df.hvplot.scatter(x='petal_width', y='sepal_length', by ='class')
-
+hvplot.show(iris_df.hvplot.scatter(x='petal_width', y='sepal_length', by ='class'))
 # %%
+# use plotly.express library
 fig = px.scatter_3d(iris_df, x='petal_width', y='sepal_length', z='petal_length',
                     color='class', symbol='class', size='sepal_width', width=800)
 fig.update_layout(legend = dict(x=0, y=1)) # update the legend position to legend = {'x': 0, 'y':1}
 fig.show()
+
+# %%
+
 
 # %%
